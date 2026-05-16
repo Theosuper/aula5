@@ -1,0 +1,48 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(193, 239, 239);
+}
+#title {
+  font-size: 48px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  color: purple;
+}
+
+#trocar {
+  color: rgb(40, 40, 243);
+  cursor: pointer;
+}
+#trocar:hover {
+  color: blueviolet;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+form input {
+  width: 348;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 12px;
+}
+form button {
+  width: 348px;
+  height: 40px;
+  border-radius: 12px;
+  border: none;
+  background-color: blue;
+  color: aliceblue;
+}
+
+form button:hover {
+  border: 1px solid purple;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(128, 0, 128, 0.4);
+}
