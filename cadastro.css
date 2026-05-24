@@ -1,19 +1,28 @@
 .name {
-  color: darkgreen;
+  background-color: rgb(82, 211, 82);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .year {
-  color: darkblue;
+  background-color: rgb(89, 89, 173);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .sells {
-  color: darkred;
+  background-color: rgb(230, 73, 73);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .protagonist {
-  color: darkgoldenrod;
+  background-color: rgb(168, 132, 41);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.indice {
+  background-color: rgb(78, 231, 245);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+#tabela {
+  width: 90vw;
+  border: 2px solid orange;
 }

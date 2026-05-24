@@ -14,7 +14,25 @@
         <input id="protagonist" type="text" placeholder="protagonista" />
         <button>Cadastrar</button>
       </form>
+      <form>
+        <input id="name" type="text" placeholder="nome" />
+        <input id="lightsaber" type="text" placeholder="lightsaber" />
+        <input id="power" type="number" placeholder="poder" min="0" max="10" />
+      </form>
     </div>
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Indice</th>
+          <th>Nome</th>
+          <th>Vendas</th>
+          <th>Protagonista</th>
+          <th>Ano</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tablebody"></tbody>
+    </table>
     <script src="./cadastro.js"></script>
   </body>
 </html>
