@@ -17,8 +17,12 @@
   background-color: rgb(168, 132, 41);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-.indice {
+.indice.par {
   background-color: rgb(78, 231, 245);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.indice.impar {
+  background-color: rgb(7, 190, 207);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
