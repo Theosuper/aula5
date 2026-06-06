@@ -1,30 +1,12 @@
-var jaCadastrados = [
-  {
-    name: "Sonic",
-    year: 1992,
-    sells: 12000000,
-    protagonist: "Sonic",
-  },
-  {
-    name: "Mario",
-    year: 1982,
-    sells: 999020000,
-    protagonist: "Mario",
-  },
-  {
-    name: "Donkey Kong",
-    year: 1987,
-    sells: 81231223,
-    protagonist: "Donkey Kong",
-  },
-  {
-    name: "Final Fantasy",
-    year: 2006,
-    sells: 1231223,
-    protagonist: "Vaan",
-  },
-];
-
+var jaCadastrados = [];
+async function chamarApi() {
+  console.log("chamou");
+  const reposta = await fetch("http://localhost:8080/jogos");
+  const jogos = await reposta.json();
+  jaCadastrados = jogos;
+  renderizar();
+}
+chamarApi();
 var editMode = false;
 function renderizar() {
   const div = document.getElementById("tablebody");
@@ -136,10 +118,10 @@ function editar() {
     }
   });
   renderizar();
-  const valorName = (document.getElementById("name").value = "");
-  const valorYear = (document.getElementById("year").value = "");
-  const valorSells = (document.getElementById("sells").value = "");
-  const valorProtagonist = (document.getElementById("protagonist").value = "");
+  document.getElementById("name").value = "";
+  document.getElementById("year").value = "";
+  document.getElementById("sells").value = "";
+  document.getElementById("protagonist").value = "";
 }
 function preEditar(objeto, index) {
   document.getElementById("name").value = objeto.name;
