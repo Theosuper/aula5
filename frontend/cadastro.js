@@ -1,7 +1,7 @@
 var jaCadastrados = [];
 async function chamarApi() {
   console.log("chamou");
-  const reposta = await fetch("http://localhost:8080/jogos");
+  const reposta = await fetch("http://localhost:8080/api/games");
   const jogos = await reposta.json();
   jaCadastrados = jogos;
   renderizar();
