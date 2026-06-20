@@ -1,21 +1,23 @@
 var jaCadastrados = [];
 async function chamarApi() {
   console.log("chamou");
-  const reposta = await fetch("http://localhost:8080/api/games");
+  const reposta = await fetch("http://localhost:8080/api/games", {
+    method: "GET",
+  });
   const jogos = await reposta.json();
   jaCadastrados = jogos;
-  renderizar();
 }
-chamarApi();
+
 var editMode = false;
-function renderizar() {
+async function renderizar() {
+  await chamarApi();
   const div = document.getElementById("tablebody");
   div.innerHTML = "";
   jaCadastrados.map((item, index) => {
     const row = document.createElement("tr");
 
     const indice = document.createElement("th");
-    indice.textContent = `${index}`;
+    indice.textContent = `${item.id}`;
     indice.classList = "indice";
     row.appendChild(indice);
     const impar = index % 2 == 1;
@@ -52,7 +54,7 @@ function renderizar() {
     const deletarBtn = document.createElement("button");
     deletarBtn.textContent = "Deletar";
     deletarBtn.addEventListener("click", () => {
-      deletar(index);
+      deletar(item.id);
     });
 
     const editarBtn = document.createElement("button");
@@ -72,8 +74,8 @@ function renderizar() {
 }
 renderizar();
 
-function deletar(index) {
-  jaCadastrados.splice(index, 1);
+async function deletar(id) {
+  await fetch(`http://localhost:8080/api/games/${id}`, { method: "DELETE" });
   renderizar();
 }
 const button = document.getElementById("buttonSubmit");
@@ -84,7 +86,7 @@ button.addEventListener("click", () => {
     criar();
   }
 });
-function criar() {
+async function criar() {
   const valorName = document.getElementById("name").value;
   const valorYear = document.getElementById("year").value;
   const valorSells = document.getElementById("sells").value;
@@ -95,8 +97,14 @@ function criar() {
     sells: valorSells,
     protagonist: valorProtagonist,
   };
-  jaCadastrados.push(objeto);
-  renderizar();
+  await fetch("http://localhost:8080/api/games", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(objeto),
+  });
+  await renderizar();
 }
 function editar() {
   const valorName = document.getElementById("name").value;
