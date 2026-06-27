@@ -1,5 +1,6 @@
 import {
   deleteGameQuery,
+  editGameQuery,
   getAllGames,
   insertGame,
 } from "../models/gameModel.js";
@@ -20,5 +21,11 @@ export class GameController {
     const id = req.params.id;
     await deleteGameQuery(id);
     return res.json({ message: "jogo deletado" });
+  }
+
+  async editGame(req, res) {
+    const gameToEdit = req.body;
+    const gameEdited = editGameQuery(gameToEdit);
+    return req.json(gameEdited);
   }
 }

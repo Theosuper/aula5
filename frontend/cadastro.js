@@ -106,20 +106,28 @@ async function criar() {
   });
   await renderizar();
 }
-function editar() {
+async function editar() {
   const valorName = document.getElementById("name").value;
   const valorYear = document.getElementById("year").value;
   const valorSells = document.getElementById("sells").value;
+  const id = button.getAttribute("id");
   const valorProtagonist = document.getElementById("protagonist").value;
   const objeto = {
+    id,
     name: valorName,
     year: valorYear,
     sells: valorSells,
     protagonist: valorProtagonist,
   };
-  const indice = button.getAttribute("indice");
-  jaCadastrados = jaCadastrados.map((item, index) => {
-    if (index == indice) {
+  const objetoAtualizado = await fetch("http://localhost:8080/api/games", {
+    method: "PUT",
+    body: JSON.stringify(objeto),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  jaCadastrados = jaCadastrados.map((item) => {
+    if (id == item.id) {
       return objeto;
     } else {
       return item;
@@ -131,10 +139,10 @@ function editar() {
   document.getElementById("sells").value = "";
   document.getElementById("protagonist").value = "";
 }
-function preEditar(objeto, index) {
+function preEditar(objeto) {
   document.getElementById("name").value = objeto.name;
   document.getElementById("year").value = objeto.year;
   document.getElementById("sells").value = objeto.sells;
   document.getElementById("protagonist").value = objeto.protagonist;
-  button.setAttribute("indice", index);
+  button.setAttribute("id", objeto.id);
 }

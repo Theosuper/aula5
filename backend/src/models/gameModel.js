@@ -3,6 +3,32 @@ import db from "../database/database.js";
 export function getAllGames() {
   return db.prepare(`SELECT * FROM games`).all();
 }
+export function editGameQuery(game) {
+  db.prepare(
+    `
+    UPDATE games
+    SET name = ?,
+        year=?,
+        sells=?,
+        protagonist=?
+        WHERE id = ?
+  `,
+  ).run(
+    game.name,
+    Number(game.year),
+    Number(game.sells),
+    game.protagonist,
+    Number(game.id),
+  );
+  return db
+    .prepare(
+      `
+    SELECT * FROM games
+    WHERE id = ?
+    `,
+    )
+    .run(Number(game.id));
+}
 
 export function insertGame(game) {
   const result = db
