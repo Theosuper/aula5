@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import "./database/database.js";
 import { gamesRoutes } from "./routes/gameRoutes.js";
+import { authRouter } from "./routes/authRoutes.js";
 const app = express();
 
 app.use(cors());
@@ -12,6 +13,8 @@ app.use("/api/games", gamesRoutes);
 app.use("/aviso", (req, res) => {
   res.json({ aviso: "você foi avisado" });
 });
+
+app.use("/api/auth", authRouter);
 app.use("/", (req, res) => {
   res.json({ message: "meu servidor" });
 });
