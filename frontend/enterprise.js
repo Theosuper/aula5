@@ -1,11 +1,12 @@
-var jaCadastrados = [];
+var listaEnterprise = [];
 async function chamarApi() {
   console.log("chamou");
   const reposta = await fetch("http://localhost:8080/api/enterprises", {
     method: "GET",
   });
   const empresas = await reposta.json();
-  jaCadastrados = empresas;
+  console.log("resposta da api: ", empresas);
+  listaEnterprise = empresas;
 }
 
 var editMode = false;
@@ -13,7 +14,7 @@ async function renderizar() {
   await chamarApi();
   const div = document.getElementById("tablebody");
   div.innerHTML = "";
-  jaCadastrados.map((item, index) => {
+  listaEnterprise.map((item, index) => {
     const row = document.createElement("tr");
 
     const indice = document.createElement("th");
@@ -39,6 +40,13 @@ async function renderizar() {
     yearOfFundation.textContent = `${item.yearOfFundation}`;
     yearOfFundation.classList = "yearOfFundation";
     row.appendChild(yearOfFundation);
+
+    const actions = document.createElement("th");
+    const deletarBtn = document.createElement("button");
+    deletarBtn.textContent = "Deletar";
+    deletarBtn.addEventListener("click", () => {
+      deletar(item.id);
+    });
 
     const editarBtn = document.createElement("button");
     editarBtn.textContent = "Editar";
@@ -105,7 +113,7 @@ async function editar() {
       },
     },
   );
-  jaCadastrados = jaCadastrados.map((item) => {
+  listaEnterprise = listaEnterprise.map((item) => {
     if (id == item.id) {
       return objeto;
     } else {

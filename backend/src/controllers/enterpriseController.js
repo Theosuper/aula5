@@ -7,8 +7,9 @@ import {
 
 export class EnterpriseController {
   getAll(req, res) {
+    console.log("chegou ao servidor");
     //chamando o banco de dados a função getAllGames
-    const enterprise = getAllGames();
+    const enterprise = getAllEnterprise();
     //enviando a resposta da função como um json
     return res.json(enterprise);
   }

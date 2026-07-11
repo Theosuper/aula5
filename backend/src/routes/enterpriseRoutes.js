@@ -5,7 +5,7 @@ const enterpriseRoutes = Router();
 const controller = new EnterpriseController();
 
 enterpriseRoutes.get("/", controller.getAll);
-enterpriseRoutes.post("/", controller.createenterprise);
-enterpriseRoutes.delete("/:id", controller.deleteenterprise);
-enterpriseRoutes.put("/", controller.editenterprise);
+enterpriseRoutes.post("/", controller.createEnterprise);
+enterpriseRoutes.delete("/:id", controller.deleteEnterprise);
+enterpriseRoutes.put("/", controller.editEnterprise);
 export { enterpriseRoutes };

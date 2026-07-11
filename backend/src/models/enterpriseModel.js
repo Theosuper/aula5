@@ -1,12 +1,12 @@
 import db from "../database/database.js";
 
-export function getAllenterprises() {
-  return db.prepare(`SELECT * FROM enterprises`).all();
+export function getAllEnterprise() {
+  return db.prepare(`SELECT * FROM enterprise`).all();
 }
-export function editenterpriseQuery(enterprise) {
+export function editEnterpriseQuery(enterprise) {
   db.prepare(
     `
-    UPDATE enterprises
+    UPDATE enterprise
     SET name = ?,
         year of fundation =?,
   `,
@@ -14,21 +14,21 @@ export function editenterpriseQuery(enterprise) {
   return db
     .prepare(
       `
-    SELECT * FROM enterprises
+    SELECT * FROM enterprise
     WHERE id = ?
     `,
     )
     .run(Number(enterprise.id));
 }
 
-export function insertenterprise(enterprise) {
+export function insertEnterprise(enterprise) {
   const result = db
     .prepare(
       `
-    INSERT INTO enterprises (
-      name,year of fundation
+    INSERT INTO enterprise (
+      name,yearOfFundation
     )
-      VALUES (?,?,?,?)
+      VALUES (?,?)
   `,
     )
     .run(enterprise.name, Number(enterprise.yearOfFundation));
@@ -36,18 +36,18 @@ export function insertenterprise(enterprise) {
   return db
     .prepare(
       `
-    SELECT * FROM enterprises
+    SELECT * FROM enterprise
     WHERE id = ?
     `,
     )
     .get(result.lastInsertRowid);
 }
 
-export function deleteenterpriseQuery(id) {
+export function deleteEnterpriseQuery(id) {
   return db
     .prepare(
       `
-    DELETE FROM enterprises
+    DELETE FROM enterprise
     WHERE id = ?
     `,
     )

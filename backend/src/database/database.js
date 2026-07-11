@@ -25,7 +25,7 @@ db.exec(`
     CREATE TABLE IF NOT EXISTS enterprise(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    foundationYear INTEGER NOT NULL
+    yearOfFundation INTEGER NOT NULL
     )
 `);
 
