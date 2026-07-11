@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./cadastro.css" />
+    <link rel="stylesheet" href="./enterprise.css" />
+  </head>
+  <body>
+    <h1>Cadastro</h1>
+    <div id="content">
+      <form>
+        <input id="name" type="text" placeholder="nome" />
+        <input
+          id="year of fundation"
+          type="number"
+          placeholder="ano de fundação"
+          min="1900"
+        />
+        <button type="button" id="buttonSubmit">Cadastrar</button>
+      </form>
+    </div>
+    <table id="tabela">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Ano de fundação</th>
+        </tr>
+      </thead>
+      <tbody id="tablebody"></tbody>
+    </table>
+    <script src="./enterprise.js"></script>
+  </body>
+</html>

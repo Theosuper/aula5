@@ -1,0 +1,23 @@
+.name {
+  background-color: rgb(82, 211, 82);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.yearOfFundation {
+  background-color: rgb(89, 89, 173);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.indice.par {
+  background-color: rgb(78, 231, 245);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.indice.impar {
+  background-color: rgb(7, 190, 207);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+#tabela {
+  width: 90vw;
+  border: 2px solid orange;
+}
