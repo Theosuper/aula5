@@ -17,7 +17,8 @@ db.exec(`
     name TEXT NOT NULL,
     year INTEGER NOT NULL,
     sells INTEGER NOT NULL,
-    protagonist TEXT NOT NULL
+    protagonist TEXT NOT NULL,
+    enterprise_id INTEGER NULL
     )
 `);
 

@@ -8,6 +8,24 @@ async function chamarApi() {
   jaCadastrados = jogos;
 }
 
+async function pegarEmpresas() {
+  const empresasApi = await fetch("http://localhost:8080/api/enterprises", {
+    method: "GET",
+  });
+  const listaDeEmpresas = await empresasApi.json();
+  const avisoDiv = document.getElementById("aviso");
+  if (!listaDeEmpresas.length) {
+    avisoDiv.innerHTML = `<div>
+        <span>PRECISA REGISTRAR UMA EMPRESA PARA CADASTRAR OS JOGOS</span>
+        <a href="/enterprise">Ir para o cadastro de empresas</a>
+      </div>`;
+    const button = document.getElementById("buttonSubmit");
+    button.disabled = true;
+  }
+  console.log("achei essas empresas: ", listaDeEmpresas);
+}
+
+pegarEmpresas();
 var editMode = false;
 async function renderizar() {
   await chamarApi();
