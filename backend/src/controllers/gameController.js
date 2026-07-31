@@ -1,3 +1,4 @@
+import { existEnterprise } from "../models/enterpriseModel.js";
 import {
   deleteGameQuery,
   editGameQuery,
@@ -13,6 +14,19 @@ export class GameController {
     return res.json(games);
   }
   async createGame(req, res) {
+    if (!req.body.enterpriseId) {
+      return res
+        .status(400)
+        .json({ message: "Precisa ter uma empresa para cadastrar o jogo" });
+    }
+    const enterpriseId = req.body.enterpriseId;
+    const enterpriseInDatabase = existEnterprise(enterpriseId);
+    console.log(enterpriseInDatabase);
+    if (!enterpriseInDatabase) {
+      return res
+        .status(400)
+        .json({ message: "Empresa não existe no banco de dados" });
+    }
     const game = insertGame(req.body);
     return res.status(201).json(game);
   }
@@ -26,6 +40,6 @@ export class GameController {
   async editGame(req, res) {
     const gameToEdit = req.body;
     const gameEdited = editGameQuery(gameToEdit);
-    return req.json(gameEdited);
+    return res.json(gameEdited);
   }
 }

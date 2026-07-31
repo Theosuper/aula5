@@ -97,6 +97,7 @@ async function criar() {
 }
 async function editar() {
   const valorName = document.getElementById("name").value;
+  const id = button.getAttribute("id");
   const valoryearOfFundation = document.getElementById("yearOfFundation").value;
   const objeto = {
     id,
@@ -127,4 +128,5 @@ async function editar() {
 function preEditar(objeto) {
   document.getElementById("name").value = objeto.name;
   document.getElementById("yearOfFundation").value = objeto.yearOfFundation;
+  button.setAttribute("id", objeto.id);
 }

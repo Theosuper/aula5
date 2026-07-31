@@ -26,7 +26,7 @@ export class EnterpriseController {
 
   async editEnterprise(req, res) {
     const enterpriseToEdit = req.body;
-    const enterpriseEdited = editEnterpriseQuery(EnterpriseToEdit);
+    const enterpriseEdited = editEnterpriseQuery(enterpriseToEdit);
     return req.json(enterpriseEdited);
   }
 }

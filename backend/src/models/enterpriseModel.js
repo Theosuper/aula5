@@ -3,14 +3,25 @@ import db from "../database/database.js";
 export function getAllEnterprise() {
   return db.prepare(`SELECT * FROM enterprise`).all();
 }
+
+export function existEnterprise(id) {
+  return db.prepare(`SELECT * FROM enterprise where id = ?`).get(id);
+}
+
 export function editEnterpriseQuery(enterprise) {
+  console.log("enterprise", enterprise);
   db.prepare(
     `
     UPDATE enterprise
     SET name = ?,
-        year of fundation =?,
+        yearOfFundation = ?
+        WHERE id = ?
   `,
-  ).run(enterprise.name, Number(enterprise.yearOfFundation));
+  ).run(
+    enterprise.name,
+    Number(enterprise.yearOfFundation),
+    Number(enterprise.id),
+  );
   return db
     .prepare(
       `

@@ -10,7 +10,7 @@ export function editGameQuery(game) {
     SET name = ?,
         year=?,
         sells=?,
-        protagonist=?
+        protagonist=?,
         WHERE id = ?
   `,
   ).run(

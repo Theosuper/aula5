@@ -23,6 +23,16 @@ async function pegarEmpresas() {
     button.disabled = true;
   }
   console.log("achei essas empresas: ", listaDeEmpresas);
+
+  const select = document.getElementById("enterpriseId");
+  select.innerHTML = `<option value="">Selecione uma empresa</option>`;
+
+  listaDeEmpresas.forEach((enterprise) => {
+    const option = document.createElement("option");
+    option.value = enterprise.id;
+    option.textContent = enterprise.name;
+    select.appendChild(option);
+  });
 }
 
 pegarEmpresas();
@@ -109,11 +119,13 @@ async function criar() {
   const valorYear = document.getElementById("year").value;
   const valorSells = document.getElementById("sells").value;
   const valorProtagonist = document.getElementById("protagonist").value;
+  const valorEnterpriseId = document.getElementById("enterpriseId").value;
   const objeto = {
     name: valorName,
     year: valorYear,
     sells: valorSells,
     protagonist: valorProtagonist,
+    enterpriseId: valorEnterpriseId,
   };
   await fetch("http://localhost:8080/api/games", {
     method: "POST",
