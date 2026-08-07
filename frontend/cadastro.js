@@ -78,6 +78,11 @@ async function renderizar() {
     year.classList = "year";
     row.appendChild(year);
 
+    const enterpriseName = document.createElement("th");
+    enterpriseName.textContent = `${item.enterprise_name}`;
+    enterpriseName.classList = "enterpriseName";
+    row.appendChild(enterpriseName);
+
     const actions = document.createElement("th");
     const deletarBtn = document.createElement("button");
     deletarBtn.textContent = "Deletar";
@@ -142,12 +147,14 @@ async function editar() {
   const valorSells = document.getElementById("sells").value;
   const id = button.getAttribute("id");
   const valorProtagonist = document.getElementById("protagonist").value;
+  const valorEnterpriseId = document.getElementById("enterpriseId").value;
   const objeto = {
     id,
     name: valorName,
     year: valorYear,
     sells: valorSells,
     protagonist: valorProtagonist,
+    enterpriseId: valorEnterpriseId,
   };
   const objetoAtualizado = await fetch("http://localhost:8080/api/games", {
     method: "PUT",
@@ -174,5 +181,6 @@ function preEditar(objeto) {
   document.getElementById("year").value = objeto.year;
   document.getElementById("sells").value = objeto.sells;
   document.getElementById("protagonist").value = objeto.protagonist;
+  document.getElementById("enterpriseId").value = objeto.enterprise_id;
   button.setAttribute("id", objeto.id);
 }

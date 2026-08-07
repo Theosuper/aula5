@@ -1,7 +1,16 @@
 import db from "../database/database.js";
 
 export function getAllGames() {
-  return db.prepare(`SELECT * FROM games`).all();
+  return db
+    .prepare(
+      `
+    SELECT games. *,enterprise.name as enterprise_name
+    FROM games
+    LEFT JOIN enterprise
+    ON games.enterprise_id = enterprise.id
+    `,
+    )
+    .all();
 }
 export function editGameQuery(game) {
   db.prepare(
@@ -11,6 +20,7 @@ export function editGameQuery(game) {
         year=?,
         sells=?,
         protagonist=?,
+        enterprise_id=?
         WHERE id = ?
   `,
   ).run(
@@ -18,6 +28,7 @@ export function editGameQuery(game) {
     Number(game.year),
     Number(game.sells),
     game.protagonist,
+    Number(game.enterpriseId),
     Number(game.id),
   );
   return db
@@ -35,12 +46,18 @@ export function insertGame(game) {
     .prepare(
       `
     INSERT INTO games (
-      name,year,sells,protagonist
+      name,year,sells,protagonist,enterprise_id
     )
-      VALUES (?,?,?,?)
+      VALUES (?,?,?,?,?)
   `,
     )
-    .run(game.name, Number(game.year), Number(game.sells), game.protagonist);
+    .run(
+      game.name,
+      Number(game.year),
+      Number(game.sells),
+      game.protagonist,
+      game.enterpriseId,
+    );
 
   return db
     .prepare(

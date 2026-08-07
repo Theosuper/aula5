@@ -41,6 +41,11 @@ async function renderizar() {
     yearOfFundation.classList = "yearOfFundation";
     row.appendChild(yearOfFundation);
 
+    const quantidadeDeJogos = document.createElement("th");
+    quantidadeDeJogos.textContent = `${item.total_games}`;
+    quantidadeDeJogos.classList = "quantidadeDeJogos";
+    row.appendChild(quantidadeDeJogos);
+
     const actions = document.createElement("th");
     const deletarBtn = document.createElement("button");
     deletarBtn.textContent = "Deletar";

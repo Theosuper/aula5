@@ -8,6 +8,11 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+.quantidadeDeJogos {
+  background-color: rgb(0, 0, 235);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 .indice.par {
   background-color: rgb(78, 231, 245);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;

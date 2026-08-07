@@ -1,7 +1,18 @@
 import db from "../database/database.js";
 
 export function getAllEnterprise() {
-  return db.prepare(`SELECT * FROM enterprise`).all();
+  return db
+    .prepare(
+      `
+    SELECT enterprise.*,
+    COUNT(games.id) AS total_games
+    FROM enterprise
+    LEFT JOIN games
+    ON enterprise.id = games.enterprise_id
+    GROUP BY enterprise.id
+    `,
+    )
+    .all();
 }
 
 export function existEnterprise(id) {
