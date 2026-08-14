@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Upload</title>
+  </head>
+  <body>
+    <h1>UPLOAD IMAGE</h1>
+    <input type="file" id="image" accept="image/*" />
+    <button onclick="uploadArquivo()">Enviar imagem</button>
+    <img id="preview" />
+    <script>
+      async function uploadArquivo() {
+        const file = document.getElementById("image").files[0];
+
+        if (!file) {
+          alert("escolha um arquivo");
+          return;
+        }
+        const formData = new FormData();
+        formData.append("image", file);
+        const respostaDoServidor = await fetch(
+          "http://locahlhost:8080/upload",
+          {
+            method: "POST",
+            body: formData,
+          },
+        );
+        const data = respostaDoServidor.json();
+        if (respostaDoServidor.ok) {
+          const img = document.getElementById("preview");
+          img.src = data.url;
+          img.style.display = "block";
+        } else {
+          alert(data.error);
+        }
+      }
+    </script>
+  </body>
+</html>

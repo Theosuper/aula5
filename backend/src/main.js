@@ -4,10 +4,18 @@ import "./database/database.js";
 import { enterpriseRoutes } from "./routes/enterpriseRoutes.js";
 import { gamesRoutes } from "./routes/gameRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
+import { uploadRoutes } from "./routes/uploadRoutes.js";
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/upload", uploadRoutes);
+
 app.use("/api/enterprises", enterpriseRoutes);
 
 app.use("/api/games", gamesRoutes);
