@@ -57,6 +57,18 @@ async function renderizar() {
     if (par) {
       indice.classList = "indice par";
     }
+    const imageCell = document.createElement("td");
+    if (item.url) {
+      const image = document.createElement("img");
+      image.src = item.url;
+      image.alt = item.name;
+      image.classList.add("game-image");
+
+      imageCell.appendChild(image);
+    } else {
+      imageCell.textContent = "Sem logo";
+    }
+    row.appendChild(imageCell);
 
     const name = document.createElement("th");
     name.textContent = `${item.name}`;
@@ -119,18 +131,39 @@ button.addEventListener("click", () => {
     criar();
   }
 });
+async function uploadArquivo() {
+  const file = document.getElementById("image").files[0];
+
+  if (!file) {
+    alert("escolha um arquivo");
+    return;
+  }
+  const formData = new FormData();
+  formData.append("image", file);
+  const respostaDoServidor = await fetch("http://localhost:8080/upload", {
+    method: "POST",
+    body: formData,
+  });
+  const data = await respostaDoServidor.json();
+  return data.url;
+}
+
 async function criar() {
   const valorName = document.getElementById("name").value;
   const valorYear = document.getElementById("year").value;
   const valorSells = document.getElementById("sells").value;
   const valorProtagonist = document.getElementById("protagonist").value;
   const valorEnterpriseId = document.getElementById("enterpriseId").value;
+
+  let url = await uploadArquivo();
+
   const objeto = {
     name: valorName,
     year: valorYear,
     sells: valorSells,
     protagonist: valorProtagonist,
     enterpriseId: valorEnterpriseId,
+    url: url,
   };
   await fetch("http://localhost:8080/api/games", {
     method: "POST",

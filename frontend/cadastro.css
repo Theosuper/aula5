@@ -30,6 +30,11 @@
   background-color: rgb(7, 190, 207);
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
+.game-image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
 
 #tabela {
   width: 90vw;

@@ -17,14 +17,11 @@
         }
         const formData = new FormData();
         formData.append("image", file);
-        const respostaDoServidor = await fetch(
-          "http://locahlhost:8080/upload",
-          {
-            method: "POST",
-            body: formData,
-          },
-        );
-        const data = respostaDoServidor.json();
+        const respostaDoServidor = await fetch("http://localhost:8080/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await respostaDoServidor.json();
         if (respostaDoServidor.ok) {
           const img = document.getElementById("preview");
           img.src = data.url;

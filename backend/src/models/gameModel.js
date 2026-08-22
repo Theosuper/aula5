@@ -46,9 +46,9 @@ export function insertGame(game) {
     .prepare(
       `
     INSERT INTO games (
-      name,year,sells,protagonist,enterprise_id
+      name,year,sells,protagonist,enterprise_id,url
     )
-      VALUES (?,?,?,?,?)
+      VALUES (?,?,?,?,?,?)
   `,
     )
     .run(
@@ -57,6 +57,7 @@ export function insertGame(game) {
       Number(game.sells),
       game.protagonist,
       game.enterpriseId,
+      game.url,
     );
 
   return db

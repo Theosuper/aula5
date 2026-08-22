@@ -6,6 +6,6 @@ export function store(req, res) {
   }
   res.json({
     filename: req.file.filename,
-    url: `http//localhost:8080/uploads/${req.file.filename}`,
+    url: `http://localhost:8080/uploads/${req.file.filename}`,
   });
 }
