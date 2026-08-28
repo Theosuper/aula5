@@ -48,12 +48,12 @@ export function insertEnterprise(enterprise) {
     .prepare(
       `
     INSERT INTO enterprise (
-      name,yearOfFundation
+      name,yearOfFundation,url
     )
-      VALUES (?,?)
+      VALUES (?,?,?)
   `,
     )
-    .run(enterprise.name, Number(enterprise.yearOfFundation));
+    .run(enterprise.name, Number(enterprise.yearOfFundation), enterprise.url);
 
   return db
     .prepare(
